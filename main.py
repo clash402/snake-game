@@ -1,19 +1,14 @@
-from turtle import Screen
+from gui import GUI
 from snake import Snake
 from game import Game
 
 
 # PROPERTIES
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor("black")
-screen.title("Snake Game!")
-screen.tracer(0)
+gui = GUI()
+snake = Snake(gui)
+game = Game(gui, snake)
 
-snake = Snake(screen)
-game = Game(screen, snake)
 
 # MAIN
 game.play()
-
-screen.exitonclick()
+gui.exitonclick()
