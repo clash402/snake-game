@@ -10,6 +10,7 @@ class Game:
         self.food = Food()
         self.scoreboard = Scoreboard()
 
+    # PUBLIC METHODS
     def play(self):
         game_is_in_progress = True
 

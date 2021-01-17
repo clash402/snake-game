@@ -2,18 +2,20 @@ from turtle import Turtle
 
 
 class Snake:
-    def __init__(self):
+    def __init__(self, screen):
         self._UP = 90
         self._DOWN = 270
         self._LEFT = 180
         self._RIGHT = 0
 
+        self.screen = screen
         self._segments = []
         self._segment_size = 20
         self._starting_pos = [(0, 0), (-self._segment_size, 0), (-self._segment_size * 2, 0)]
         self.speed = 0.1
 
         self._create()
+        self._listen_for_movement()
 
         self._head = self._segments[0]
 
@@ -40,6 +42,29 @@ class Snake:
     def _extend(self):
         self._add_segment(self._segments[-1].position())
 
+    def _listen_for_movement(self):
+        self.screen.listen()
+        self.screen.onkey(self._turn_up, "Up")
+        self.screen.onkey(self._turn_down, "Down")
+        self.screen.onkey(self._turn_left, "Left")
+        self.screen.onkey(self._turn_right, "Right")
+
+    def _turn_up(self):
+        if self._head.heading() != self._DOWN:
+            self._head.setheading(self._UP)
+
+    def _turn_down(self):
+        if self._head.heading() != self._UP:
+            self._head.setheading(self._DOWN)
+
+    def _turn_left(self):
+        if self._head.heading() != self._RIGHT:
+            self._head.setheading(self._LEFT)
+
+    def _turn_right(self):
+        if self._head.heading() != self._LEFT:
+            self._head.setheading(self._RIGHT)
+
     # PUBLIC METHODS
     def move(self):
         for segment_n in range(len(self._segments) - 1, 0, -1):
@@ -48,22 +73,6 @@ class Snake:
             self._segments[segment_n].goto(pos_x, pos_y)
 
         self._head.forward(self._segment_size)
-
-    def turn_up(self):
-        if self._head.heading() != self._DOWN:
-            self._head.setheading(self._UP)
-
-    def turn_down(self):
-        if self._head.heading() != self._UP:
-            self._head.setheading(self._DOWN)
-
-    def turn_left(self):
-        if self._head.heading() != self._RIGHT:
-            self._head.setheading(self._LEFT)
-
-    def turn_right(self):
-        if self._head.heading() != self._LEFT:
-            self._head.setheading(self._RIGHT)
 
     def has_eaten(self, food):
         if self._head.distance(food) < 15:
