@@ -36,13 +36,9 @@ while game_is_in_progress:
         scoreboard.increase_score()
 
     if snake.has_left_screen():
-        # game_in_progress = False
-        # scoreboard.display_game_over()
         scoreboard.reset_score()
 
     if snake.has_touched_itself():
-        # game_in_progress = False
-        # scoreboard.display_game_over()
         scoreboard.reset_score()
 
 screen.exitonclick()

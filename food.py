@@ -13,6 +13,7 @@ class Food(Turtle):
         self.speed("fastest")
         self.place()
 
+    # PUBLIC METHODS
     def place(self):
         ran_x = random.randint(-280, 280)
         ran_y = random.randint(-280, 280)
