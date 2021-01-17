@@ -2,13 +2,13 @@ from turtle import Turtle
 
 
 class Snake:
-    def __init__(self, screen):
+    def __init__(self, gui):
         self._UP = 90
         self._DOWN = 270
         self._LEFT = 180
         self._RIGHT = 0
 
-        self.screen = screen
+        self.gui = gui
         self._segments = []
         self._segment_size = 20
         self._starting_pos = [(0, 0), (-self._segment_size, 0), (-self._segment_size * 2, 0)]
@@ -43,11 +43,11 @@ class Snake:
         self._add_segment(self._segments[-1].position())
 
     def _listen_for_movement(self):
-        self.screen.listen()
-        self.screen.onkey(self._turn_up, "Up")
-        self.screen.onkey(self._turn_down, "Down")
-        self.screen.onkey(self._turn_left, "Left")
-        self.screen.onkey(self._turn_right, "Right")
+        self.gui.listen()
+        self.gui.onkey(self._turn_up, "Up")
+        self.gui.onkey(self._turn_down, "Down")
+        self.gui.onkey(self._turn_left, "Left")
+        self.gui.onkey(self._turn_right, "Right")
 
     def _turn_up(self):
         if self._head.heading() != self._DOWN:

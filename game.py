@@ -4,8 +4,8 @@ import time
 
 
 class Game:
-    def __init__(self, screen, snake):
-        self.screen = screen
+    def __init__(self, gui, snake):
+        self.gui = gui
         self.snake = snake
         self.food = Food()
         self.scoreboard = Scoreboard()
@@ -15,7 +15,7 @@ class Game:
         game_is_in_progress = True
 
         while game_is_in_progress:
-            self.screen.update()
+            self.gui.update()
             time.sleep(self.snake.speed)
             self.snake.move()
 
