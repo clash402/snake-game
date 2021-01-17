@@ -1,7 +1,8 @@
 from turtle import Screen
 
 
-class GUI():
+class GUI:
+    # Cannot inherit from Screen class in Turtle, so each Screen method must be recreated here
     def __init__(self):
         self.screen = Screen()
 
@@ -10,7 +11,7 @@ class GUI():
         self.screen.title("Snake Game!")
         self.screen.tracer(0)
 
-    # PUBLIC METHODS
+    # PUBLIC METHODS (recreated Screen methods)
     def listen(self):
         self.screen.listen()
 
